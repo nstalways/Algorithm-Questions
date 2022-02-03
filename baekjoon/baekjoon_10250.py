@@ -11,7 +11,6 @@
 # 시간 제한 = 1초
 
 import math
-import numpy as np
 
 # 테스트 데이터의 개수
 T = int(input())
