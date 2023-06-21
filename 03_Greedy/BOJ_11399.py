@@ -17,5 +17,4 @@ if __name__ == "__main__":
     P_list = list(map(int, sys.stdin.readline().strip().split()))
 
     solution(N, P_list)
-
-
+    
