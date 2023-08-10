@@ -14,3 +14,4 @@ if __name__ == "__main__":
         scores.append((num_problem, int(input())))
 
     solution(scores)
+    
