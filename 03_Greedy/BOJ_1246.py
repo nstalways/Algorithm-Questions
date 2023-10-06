@@ -4,6 +4,8 @@
 # 달걀의 가격이 A라면, Pi >= A인 모든 고객은 달걀을 산다는 것
 # 목표: 최대 수익을 올릴 수 있는 달걀의 가장 낮은 가격을 책정하는 것
 
+import sys
+
 def solution(n, p_i):
     p_i.sort()
 
@@ -25,6 +27,8 @@ def solution(n, p_i):
 
 
 if __name__ == "__main__":
+    input = sys.stdin.readline
+
     N, M = map(int, input().split())
     p_i = []
     for _ in range(M):
