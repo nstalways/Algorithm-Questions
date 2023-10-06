@@ -29,8 +29,25 @@ def solution(l: str, r: str):
         
         print(ans)
 
+def solution2(l, r):
+    ans = 0
+
+    # padding
+    min_len, max_len = len(l), len(r)
+    l = '0' * (max_len - min_len) + l
+
+    for idx in range(max_len):
+        if l[idx] == r[idx]:
+            if l[idx] == '8':
+                ans += 1
+        else:
+            break
+    
+    print(ans)
+
 
 if __name__ == "__main__":
     L, R = sys.stdin.readline().split()
 
     solution(L, R)
+    solution2(L, R)
