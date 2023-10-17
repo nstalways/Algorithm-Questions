@@ -9,3 +9,59 @@
     - `oct()`: 10진수를 8진수로 변환할 때 사용
     - `hex()`: 10진수를 16진수로 변환할 때 사용
     - `int(n, base)`: base로 표현된 n을 10진수로 변환할 때 사용
+
+### 1. LCS
+- [Reference](https://velog.io/@emplam27/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-%EA%B7%B8%EB%A6%BC%EC%9C%BC%EB%A1%9C-%EC%95%8C%EC%95%84%EB%B3%B4%EB%8A%94-LCS-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-Longest-Common-Substring%EC%99%80-Longest-Common-Subsequence)
+- Longest Common Subseqeunce (최장 공통 부분 수열) 혹은 Longest Common Substring (최장 공통 부분 문자열)을 줄여 LCS라고 표현한다.
+- LCS를 Dynamic Programming 개념으로 푸는 방법에 대해 정리했다.
+- 먼저 최장 공통 부분 문자열을 구하는 코드이다.
+    ```python
+    # 1. 입력으로 두 개의 문자열이 주어진다.
+    A, B = input(), input()
+
+    # 2. A, B의 길이를 기반으로 2차원 배열을 초기화한다.
+    len_a, len_b = len(A), len(B)
+    LCS = [[0] * (len_b + 1) for _ in range(len_a + 1)]
+
+    # 3. A, B 문자열을 이루는 문자끼리 비교를 수행한다.
+    for i in range(1, len_a + 1):
+        for j in range(1, len_b + 1):
+            ch_a, ch_b = A[i], B[j]
+
+            # 3-1. 두 문자가 같다면
+            if ch_a == ch_b:
+                LCS[i][j] = LCS[i - 1][j - 1] + 1
+            # 3-2. 다르다면
+            else:
+                LCS[i][j] = 0
+    ```
+- 다음은 최장 공통 부분 수열을 구하는 코드이다.
+    ```python
+    # 1. 입력으로 두 개의 문자열이 주어진다.
+    A, B = input(), input()
+
+    # 2. A, B의 길이를 기반으로 2차원 배열을 초기화한다.
+    len_a, len_b = len(A), len(B)
+    LCS = [[0] * (len_b + 1) for _ in range(len_a + 1)]
+    
+    # 3. A, B 문자열을 이루는 문자끼리 비교를 수행한다.
+    for i in range(1, len_a + 1):
+        for j in range(1, len_b + 1):
+            ch_a, ch_b = A[i], B[j]
+
+            # 3-1. 두 문자가 같다면
+            if ch_a == ch_b:
+                LCS[i][j] = LCS[i - 1][j - 1] + 1
+            # 3-2. 다르다면
+            else:
+                LCS[i][j] = max(LCS[i][j - 1], LCS[i - 1][j])
+    ```
+- DP를 활용하는 방식이 다를 뿐, 흐름은 동일하다.
+- 이는 부분 문자열과 부분 수열의 정의가 다르기 때문인데, 부분 문자열은 **반드시 연속되어야** 하고, 부분 수열은 **연속되지 않아도** 되기 때문이다.
+- LCS 배열 내에서 정수 값은 **해당 지점까지의 같은 문자 개수**를 의미한다.
+- 부분 문자열은 **반드시 연속**되어야 하기 때문에, 문자가 서로 다른 경우 이를 초기화해야 한다. **다르다는 것은 더 이상 연속되지 않는다는 것을 의미**하기 때문이다.
+- 부분 수열은 연속될 필요가 없다. 따라서 문자가 서로 다른 경우 두 개의 값을 비교하여 더 큰 값을 저장한다.
+    - 왜 두 개의 값을 비교하여 더 큰 값을 저장할까?
+    - 앞서 설명했던 것처럼, LCS 배열 내에서 정수 값은 **해당 지점까지의 같은 문자 개수**를 의미한다.
+    - 부분 수열은 **연속될 필요가 없기** 때문에, 문자가 서로 다른 경우 이전 지점까지의 같은 문자 개수를 유지해야 한다.
+- DP의 경우 그림을 그리거나 손으로 쓰면서 보는 게 이해가 쉽기 때문에, 좀 더 확실하게 이해하고 싶다면 Reference를 읽어보자. 매우 잘 설명해주신 글이다.
