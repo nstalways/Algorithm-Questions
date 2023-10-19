@@ -9,7 +9,10 @@ def solution(n_vertex, start, graph):
 
     pq = [(0, start)]
     while pq:
-        w, v = heapq.heappop(pq)       
+        w, v = heapq.heappop(pq)
+
+        if w > dist[v]:
+            continue
 
         for next_v, next_w in graph[v]:
             new_w = w + next_w
