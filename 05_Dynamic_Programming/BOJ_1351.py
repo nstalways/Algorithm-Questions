@@ -1,6 +1,7 @@
 import sys
 from collections import deque
 
+# TODO: 최적화
 def solution(n, p, q):
     if n == 0:
         return 1
