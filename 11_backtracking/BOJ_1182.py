@@ -2,44 +2,28 @@ import sys
 
 def solution(N, S, integer_lst):
     cnt = 0
+    tmp = []
 
-    def backtracking():
+    def backtracking(start):
         nonlocal cnt
-
-        if len(tmp) == lim:
-            res = 0
-            for i in tmp:
-                res += integer_lst[i]
-            
-            if res == S:
-                cnt += 1
-            
+        print(start, tmp)
+        if tmp and sum(tmp) == S:
+            cnt += 1
             return
-
-        for i in range(N):
-            if not tmp:
-                tmp.append(i)
-            else:
-                if i > tmp[-1]:
-                    tmp.append(i)
-                else:
-                    continue
-            
-            backtracking()
+        
+        for i in range(start, N):
+            tmp.append(integer_lst[i])
+            backtracking(i + 1)
             tmp.pop()
-
-    for i in range(1, N + 1):
-        tmp = []
-        lim = i
-        backtracking()
-
+    
+    backtracking(0)
     print(cnt)
 
 from itertools import combinations
 
 def basic_solution(N, S, integer_lst):
     """backtracking보다 훨씬 빠름"""
-    cnt = 0
+    cnt = 0                          
     for select in range(1, N + 1):
         candidates = list(combinations(integer_lst, select))
 
@@ -57,4 +41,4 @@ if __name__ == "__main__":
     integer_lst = list(map(int, input().split()))
 
     solution(N, S, integer_lst)
-    basic_solution(N, S, integer_lst)
+    # basic_solution(N, S, integer_lst)
