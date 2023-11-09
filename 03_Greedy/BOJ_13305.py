@@ -10,27 +10,12 @@ prices = list(map(int, input().split()))
 """
 핵심: 가격이 저렴한 주유소에서 최대한 많이 충전한다.
 """
-cur_city, next_city = 0, 1
-dist = roads[cur_city]
+cur_price = prices[0]
 ans = 0
 
-while True:
-    if prices[cur_city] < prices[next_city]:
-        dist += roads[next_city]
-
-        if next_city == N - 2:
-            ans += (prices[cur_city] * dist)
-            break
-    
-    else:
-        ans += (prices[cur_city] * dist)
-
-        if next_city == N - 1:
-            break
-
-        cur_city = next_city
-        dist = roads[cur_city]
-
-    next_city += 1
+for i in range(N - 1):
+    if cur_price > prices[i]:
+        cur_price = prices[i]
+    ans += (cur_price * roads[i])
 
 print(ans)
