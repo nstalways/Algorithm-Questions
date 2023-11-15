@@ -16,19 +16,8 @@ stack = []
 for ch in s:
     stack.append(ch)
 
-    if len(stack) >= len_target:
-        is_matched = True
-        idx = -1
-        for i in range(len_target - 1, -1, -1):
-            if stack[idx] != target[i]:
-                is_matched = False
-                break
-
-            idx -= 1
-
-        if is_matched:
-            for _ in range(len_target):
-                stack.pop()
+    if stack[-len_target:] == target:
+        del stack[-len_target:]
 
 if not stack:
     print('FRULA')                
