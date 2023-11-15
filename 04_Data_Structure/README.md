@@ -2,6 +2,12 @@
 - 코딩 테스트에 자주 출제되는 자료 구조 관련 문제들입니다.
 - **자료 구조 관련 문제를 풀 때 필요한 개념 및 Tip 들**을 README에 기록합니다.
 1. 양방향 회전 큐는 `collections` 모듈의 `deque` 및 클래스 메소드인 `rotate()`를 사용하면 된다.
+2. Python의 list 내부 값을 삭제할 때 이용할 수 있는 함수로는 `remove()`, `pop()`, `del`이 있다.
+    - `remove()`: 지우고자 하는 값을 인자로 입력받는다. 동일한 값이 여러 개 존재하는 경우, 순서상 가장 앞에 존재하는 값을 제거한다. Inplace 연산이다.
+    - `pop()`: 지우고자 하는 값의 위치를 인자로 입력받는다. 지우고자 하는 값을 반환하며, Inplace 연산이다.
+    - `del`: 지우고자 하는 값으 위치를 인자로 입력받는다. 반환값은 없으며, Inplace 연산이다.
+    - `del`이 `pop()`보다는 조금 더 빠르다. 반환값이 없기 때문이다.
+    - Python의 연산에 대한 시간 복잡도가 궁금하다면 [여기](https://ics.uci.edu/~pattis/ICS-33/lectures/complexitypython.txt)를 참고해보자.
 
 ### 1. Heap
 - [Reference](https://docs.python.org/ko/3/library/heapq.html)
