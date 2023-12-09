@@ -33,6 +33,7 @@ def solution(c, r, d, g):
     cur_g = 0
     while cur_g < g:
         directions_cp = directions[:]
+        
         for direction in directions_cp[::-1]:
             nd = (direction + 1) % 4
 
@@ -43,7 +44,7 @@ def solution(c, r, d, g):
             directions.append(nd)
 
         cur_g += 1
-        
+
 
 for e in arr:
     solution(*e)
